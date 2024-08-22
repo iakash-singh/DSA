@@ -1,8 +1,12 @@
 class Solution {
 public:
     int findComplement(int num) {
-        unsigned mask = ~0;
-        while(mask & num) mask = mask<<1;
-        return ~num^mask;
+        long pow2 = 2, temp = num;
+        while(temp>>1){
+            temp >>=1;
+            pow2<<=1;
+        }
+
+        return pow2-num-1;
     }
 };

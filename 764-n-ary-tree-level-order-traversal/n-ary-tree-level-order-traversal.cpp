@@ -26,17 +26,17 @@ public:
         if(!root){
             return ans;
         }
-        vector<Node*> st;
-        st.push_back(root);
-        while(st.size()){
-            int stsize = st.size();
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty()){
+            int stsize = q.size();
             vector<int> temp;
             for(int j=0;j<stsize;j++){
-                Node* node = st[0];
-                st.erase(st.begin());
+                Node* node = q.front();
+                q.pop();
                 temp.push_back(node->val);
                 for(Node* n : node->children){
-                    st.push_back(n);
+                    q.push(n);
                 }
             }
             ans.push_back(temp);

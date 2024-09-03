@@ -11,9 +11,16 @@
 -- group by m.managerId
 -- having count(m.managerId) >=5 
 
-select name from Employee
-where id in(
-    select managerId from Employee group by managerId 
-    having count(*) >=5
-)
+-- select name from Employee
+-- where id in(
+--     select managerId from Employee group by managerId 
+--     having count(*) >=5
+-- )
+
+select a.name from employee a join 
+employee b on a.id = b.managerId
+group by b.managerId 
+having count(*)>=5
+
+
 

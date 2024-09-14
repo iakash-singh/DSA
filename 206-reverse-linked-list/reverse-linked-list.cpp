@@ -9,43 +9,24 @@
  * };
  */
 class Solution {
-public:
-
-    ListNode* reverse(ListNode* head){
-        if(head==NULL || head->next==NULL){
-            return head;
+    ListNode* recursion(ListNode* node, ListNode*& newHead){
+        if(node->next == NULL){
+            newHead = node;
+            return node;
         }
-        ListNode* newhead = reverse(head->next);
-        ListNode* front = head->next;
-        front->next = head;
-        head->next = NULL;
-        return newhead;
+
+        ListNode* temp = recursion(node->next, newHead);
+        
+        temp->next = node;
+        node->next = NULL;
+        
+        return node;
     }
-
-
+public:
     ListNode* reverseList(ListNode* head) {
-        // ListNode* temp = head;
-        // stack<int> stack;
-        // while(temp!=NULL){
-        //     stack.push(temp->val);
-        //     temp = temp->next;
-        // }
-
-        // temp=head;
-        // while(temp!=NULL){
-        //     temp->val = stack.top();
-        //     stack.pop();
-        //     temp=temp->next;
-        // }
-        // return head;
-
-        // ListNode* last = NULL;
-        // ListNode* current = head;
-        // while(current!=NULL){
-        //     last = current->next;
-        //     current->next = last
-        // }
-
-        return reverse(head);
+        if(!head) return head;
+        ListNode* newHead = NULL;
+        recursion(head, newHead);
+        return newHead;
     }
 };

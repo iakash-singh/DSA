@@ -9,24 +9,16 @@
  * };
  */
 class Solution {
-    ListNode* recursion(ListNode* node, ListNode*& newHead){
-        if(node->next == NULL){
-            newHead = node;
-            return node;
-        }
-
-        ListNode* temp = recursion(node->next, newHead);
-        
-        temp->next = node;
-        node->next = NULL;
-        
-        return node;
-    }
 public:
     ListNode* reverseList(ListNode* head) {
-        if(!head) return head;
-        ListNode* newHead = NULL;
-        recursion(head, newHead);
-        return newHead;
+        ListNode *nextNode,*prevNode = NULL;
+        while(head){
+            nextNode = head->next;
+            head->next = prevNode;
+            prevNode=head;
+            head = nextNode;
+        }
+
+        return prevNode;
     }
 };

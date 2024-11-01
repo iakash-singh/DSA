@@ -1,21 +1,19 @@
 class Solution {
 public:
     string makeFancyString(string s) {
-        int n = s.size();
-        string temp = s;
-        if (n < 3) {
-            return s;
-        }
-        vector<int> arr;
-        for (int i = 0; i < n - 2; i++) {
-            if (temp[i] == temp[i + 1] && temp[i] == temp[i + 2]) {
-                arr.push_back(i + 2);  
+        string result;
+        int count = 1;  // Track consecutive characters
+        result += s[0];
+        for (int i = 1; i < s.size(); i++) {
+            if (s[i] == s[i - 1]) {
+                count++;
+            } else {
+                count = 1;
+            }
+            if (count < 3) {
+                result += s[i];
             }
         }
-        
-        for (int i = arr.size() - 1; i >= 0; i--) {
-            s.erase(arr[i], 1);
-        }
-        return s;
+        return result;
     }
 };

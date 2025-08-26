@@ -1,16 +1,14 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int sum1 = 0;
         int n = nums.size();
-
+        int total_sum = (n*(double(n+1)/2));
+        cout<<total_sum<<endl;
+        int sum = 0;
         for(int i=0;i<n;i++){
-            sum1+=nums[i];
+            sum+=nums[i];
         }
-
-        int sum2 = (n*(n+1))/2;
-        int diff = sum2 - sum1;
-
-        return diff;
+        cout<<sum<<endl;
+        return total_sum - sum;
     }
 };
